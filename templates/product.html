@@ -41,14 +41,14 @@ Products
                         </tr>
                     </thead>
                     <tbody>
-                        {% for user in products %}
+                        {% for prd in products %}
                         <tr>
                             <td><img class="rounded-circle mr-2" width="30" height="30"
-                                    src="assets/img/avatars/avatar4.jpeg">user.name</td>
-                            <td>{{user.id}}</td>
-                            <td>{{user.name}}</td>
-                            <td>{{user.phone}}</td>
-                            <td>{{user.mail}}<br></td>
+                                    src="assets/img/avatars/avatar4.jpeg">{{prd.name}}</td>
+                            <td>{{prd.id}}</td>
+                            <td>{{prd.name}}</td>
+                            <td>{{prd.price}}</td>
+                            <td>{{prd.amount}}<br></td>
                             <td>
                                 <div class="btn-group" role="group" style="height: 40px;"><button
                                         class="btn btn-primary" type="button">Edit</button></div>

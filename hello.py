@@ -2,9 +2,9 @@ import sqlite3
 
 import click
 from flask import Flask, current_app, g, jsonify, render_template
-from flask.cli import with_appcontext
 
 app = Flask(__name__)
+app.debug = True
 
 
 class Customer:
@@ -15,12 +15,24 @@ class Customer:
         self.mail = mail
 
 
-g = sqlite3.connect("DB.db")
-c = g.execute("SELECT * FROM CUSTOMER")
-data = c.fetchall()
-print(data[0])
+class Products:
+    def __init__(self, ID, name, price, amount):
+        self.ID = ID
+        self.name = name
+        self.price = price
+        self.amount = amount
 
-customers = [Customer(t[0], t[1], t[2], t[3]) for t in data]
+
+conn = sqlite3.connect("DB.db")
+
+c = conn.execute("SELECT * FROM CUSTOMER")
+data = c.fetchall()
+data_customers = [Customer(t[0], t[1], t[2], t[3]) for t in data]
+
+p = conn.execute("SELECT * FROM PRODUCTS")
+data_product = p.fetchall()
+print(data_product)
+products = [Products(t[0], t[1], t[2], t[3]) for t in data_product]
 
 
 @app.route("/")
@@ -43,8 +55,8 @@ def admin():
 
 
 @app.route("/products")
-def products():
-    return render_template("product.html", products=customers)
+def get_products():
+    return render_template("product.html", products=products)
 
 
 @app.route("/login")
