@@ -1,9 +1,6 @@
-{% extends 'default.html' %}
-
-{% block title %} Register {% endblock %}
+{% extends "default.html" %}
 
 {% block content %}
-
 <body class="bg-gradient-primary">
     <div class="container">
         <div class="row justify-content-center">
@@ -13,7 +10,7 @@
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
                                 <div class="flex-grow-1 bg-login-image"
-                                    style="background: url(assets/img/dogs/image2.jpeg) bottom / cover no-repeat;">
+                                    style="background: url(static/img/dogs/image2.jpeg) bottom / cover no-repeat;">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -21,13 +18,13 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Welcome Back!</h4>
                                     </div>
-                                    <form class="user">
-                                        <div class="form-group"><input class="form-control form-control-user"
-                                                type="email" id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter User Name..." name="email"></div>
-                                        <div class="form-group"><input class="form-control form-control-user"
-                                                type="password" id="exampleInputPassword" placeholder="Password"
-                                                name="password"></div>
+                                    <form class="user" action="/login#" method="post">
+                                        <div class="form-group">
+                                            {{ form.username(class="form-control form-control-user", placeholder="Username...") }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.passwd(class="form-control form-control-user", placeholder="Password...") }}<br>
+                                        </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input
@@ -36,8 +33,8 @@
                                                         class="form-check-label custom-control-label"
                                                         for="formCheck-1">Remember Me</label></div>
                                             </div>
-                                        </div><button class="btn btn-primary btn-block text-white btn-user"
-                                            type="submit">Login</button>
+                                        </div>
+                                        {{ form.submit(class="btn btn-primary btn-block text-white btn-user" ) }}
                                         <hr>
                                     </form>
                                     <div class="text-center"><a class="small" href="forgot-password.html">Forgot
@@ -50,4 +47,5 @@
             </div>
         </div>
     </div>
-    {% endblock %}
+</body>
+{% endblock %}
