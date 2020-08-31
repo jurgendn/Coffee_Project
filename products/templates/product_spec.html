@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Edit
+{{title}}
 {% endblock %}
 
 {% block content %}
@@ -158,63 +158,67 @@ Edit
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form method="post">
+                        <form method="post" action="/products/asb">
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <div class="col-sm-4"><label class="col-form-label"
-                                                style="font-family: Lato, sans-serif;font-weight: normal;padding: 0px;font-size: 18px;opacity: 0.73;"
-                                                for="nombre">Name</label></div>
-                                        <div class="col-sm-8"><input class="form-control" type="text" name="nombre">
+                                        <div class="col-sm-4">
+                                            {{form.name.label(class="col-form-label", style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;")}}
+                                        </div>
+                                        <div class="col-sm-8">
+                                            {{form.name(class="form-control")}}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-4"><label class="col-form-label"
-                                                style="font-family: Lato, sans-serif;font-weight: normal;padding: 0px;font-size: 18px;opacity: 0.73;"
-                                                for="nombre">Category</label></div>
-                                        <div class="col-sm-8 col-lg-8"><select
-                                                class="form-control d-sm-flex align-items-sm-end justify-content-xl-start align-items-xl-end"
-                                                style="font-size: 16px;height: 43px;">
-                                                <optgroup label="This is a group">
-                                                    <option value="12" selected="">Raw Material</option>
-                                                    <option value="13">Accessories</option>
-                                                    <option value="14">Coffee Machine</option>
-                                                    <option value="14">Others</option>
-                                                </optgroup>
-                                            </select></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-4"><label class="col-form-label"
-                                                style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;"
-                                                for="titular">Brand</label></div>
-                                        <div class="col-sm-8"><input class="form-control" type="text" name="titular">
+                                        <div class="col-sm-4">
+                                            {{form.category.label(class="col-form-label", style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;")}}
+                                        </div>
+                                        <div class="col-sm-8 col-lg-8">
+                                            {{form.category(class="form-control d-sm-flex align-items-sm-end justify-content-xl-start align-items-xl-end",
+                                            style="font-size: 16px;height: 43px;")}}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-4"><label class="col-form-label"
-                                                style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;"
-                                                for="titular">Description</label></div>
-                                        <div class="col-sm-8"><textarea class="form-control"></textarea></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-4"><label class="col-form-label"
-                                                style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;"
-                                                for="titular">Price</label></div>
-                                        <div class="col-sm-8"><input class="form-control" type="text" name="titular">
+                                        <div class="col-sm-4">
+                                            {{form.brand.label(class="col-form-label",
+                                            style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;")}}
+                                        </div>
+                                        <div class="col-sm-8">
+                                            {{form.brand(class="form-control")}}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-4"><label class="col-form-label"
-                                                style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;"
-                                                for="titular">Amount</label></div>
-                                        <div class="col-md-12 col-lg-8"><input class="form-control" type="number"></div>
+                                        <div class="col-sm-4">
+                                            {{form.description.label(class="col-form-label",
+                                            style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;")}}
+                                        </div>
+                                        <div class="col-sm-8">
+                                            {{form.description(class="form-control")}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            {{form.price.label(class="col-form-label",
+                                            style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;")}}
+                                        </div>
+                                        <div class="col-sm-8">
+                                            {{form.price(class="form-control ")}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            {{form.amount.label(class="col-form-label",
+                                            style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;")}}<output class="col-form-label"
+                                            style="font-family: Lato, sans-serif;font-weight: normal;opacity: 0.75;font-size: 18px;" id="num">0</output>
+                                        </div>
+                                        <div class="col-md-12 col-lg-8">
+                                            {{form.amount(oninput="num.value = this.value", value=0)}}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-left text-sm-left text-md-left text-lg-left text-xl-left">
-                                    <button class="btn btn-primary" type="button"
-                                        style="margin: 20px;width: 100px;background-color: #4b88e4;">Save</button><button
-                                        class="btn btn-primary" type="button"
-                                        style="width: 100px;margin: 20px;background-color: #fc5a5a;">Cancel</button>
+                                    {{form.save(class="btn btn-primary",                            style="margin: 20px;width: 100px;background-color: #4b88e4;")}}
+                                    {{form.cancel(class="btn btn-primary",                            style="margin: 20px;width: 100px;background-color: #fc5a5a;")}}
                                 </div>
                             </div>
                             <hr>
