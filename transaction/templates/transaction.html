@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block title %} Transaction History {% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <h3 class="text-dark mb-4">History</h3>
+  <div class="card shadow">
+    <div class="card-header py-3">
+      <p class="text-primary m-0 font-weight-bold">Transaction Info</p>
+    </div>
+    <div class="card-body">
+      <div
+        class="table-responsive table mt-2"
+        id="dataTable"
+        role="grid"
+        aria-describedby="dataTable_info"
+      >
+        <table class="table my-0" id="dataTable">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>User ID</th>
+              <th>Products</th>
+              <th>Amount</th>
+              <th>Total</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for transaction in transactions %}
+            <tr>
+              <td class="text-truncate text-break text-left d-lg-flex">
+                {{transaction.ID}}
+              </td>
+              <td>{{transaction.user_ID}}</td>
+              <td>
+                {% for prd in transaction.products_list %}
+                <p>{{prd[0]}}</p>
+                {% endfor %}
+              </td>
+              <td>
+                {% for prd in transaction.products_list %}
+                <p>{{prd[1]}}</p>
+                {% endfor %}
+              </td>
+              <td class="text-truncate">{{transaction.total}}</td>
+              <td class="text-truncate">{{transaction.date}}</td>
+              <hline></hline>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
