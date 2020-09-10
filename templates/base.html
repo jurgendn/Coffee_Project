@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="shortcut icon"  href="/static/img/icon.png"/>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/simple-line-icons.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/Login-Form-Clean.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/Login-Form-Dark.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/Pretty-Footer.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/Registration-Form-with-Photo.css')}}">
+</head>
+<body style="background:linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url('/static/img/bg.jpg');">
+    {% block content %}{% endblock %}
+    <footer>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 footer-navigation">
+                <h3><a href="#">Coffe Way&nbsp;&nbsp;<i class="icon ion-coffee" style="font-size: 50px;"></i>&nbsp;</a>
+                </h3>
+                <p class="links"><a href="/">Home</a><strong> · </strong><a
+                        href="/products">Product</a><strong> · </strong><a href="/about">About</a><strong> · </strong><a href="/about/sales">Contact</a></p>
+                <p class="company-name">Coffee Way © 2020 </p>
+            </div>
+            <div class="col-sm-6 col-md-4 footer-contacts">
+                <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
+                    <p><span class="new-line-span">12 Tran Dai Nghia Street</span> HaNoi, VietNam</p>
+                </div>
+                <div><i class="fa fa-phone footer-contacts-icon"></i>
+                    <p class="footer-center-info email text-left">0369203988</p>
+                </div>
+                <div><i class="fa fa-envelope footer-contacts-icon"></i>
+                    <p> <a href="#" target="_blank">customerservice@coffeeway.com</a></p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-4 footer-about">
+                <h4>About the company</h4>
+                <p> Founded in 1987 by the Hernandez brothers, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of South and Central America. We are dedicated to travelling the world, finding the best coffee, and bringing back to you here in our cafe. </p>
+                <div class="social-links social-icons"><a href="https://www.facebook.com/groups/234053657927282/?source=unknown"><i class="fa fa-facebook"></i></a><a href="https://github.com/jurgendn/Coffee_Project"><i
+                            class="fa fa-github"></i></a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bs-init.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+    <script src="{{url_for('static', filename='js/current-day.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox-plus-jquery.min.js"></script>
+</body>
+
+</html>

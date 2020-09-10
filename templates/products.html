@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Our Products{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    {% if user %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/myaccount">My account</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/MyCart">My Cart</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower" style="font-size: 60px;font-family: Cookie, cursive;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;padding-left: 20px;">&nbsp;products &amp; booking</span></h1>
+    <section class="page-section">
+        <div class="container">
+            <div class="product-item">
+                <div class="d-flex product-item-title">
+                    <div class="d-flex mr-auto bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-0"><span class="section-heading-upper">Blended to Perfection</span><span class="section-heading-lower">COFFEES AND RAW MATERIALS</span></h2>
+                    </div>
+                </div><img class="img-fluid d-flex mx-auto product-item-img mb-3 mb-lg-0 rounded" src="{{url_for('static', filename='img/products-01.jpg')}}">
+                <div class="bg-faded p-5 rounded" style="margin-bottom: 1px;">
+                    <p class="mb-0">We take pride in our work, and it shows. Every time you order a beverage from us, we guarantee that it will be an experience worth having. Whether it's our world famous Venezuelan Cappuccino, a refreshing iced herbal tea, or something
+                        as simple as a cup of speciality sourced black coffee, you will be coming back for more.</p><a class="btn btn-primary" role="button" style="margin-top: 20px;padding-right: 20px;padding-left: 20px;margin-left: 400px;margin-right: 400px;"
+                        href="/products/product_coffees">More information</a></div>
+            </div>
+        </div>
+    </section>
+    <section class="page-section">
+        <div class="container">
+            <div class="product-item">
+                <div class="d-flex product-item-title">
+                    <div class="d-flex ml-auto bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-0"><span class="section-heading-upper">Delicious Treats, Good Eats</span><span class="section-heading-lower">COFFEE MACHINERY</span></h2>
+                    </div>
+                </div><img class="img-fluid d-flex mx-auto product-item-img mb-3 mb-lg-0 rounded" src="{{url_for('static', filename='img/machine_coffee2.jpg')}}">
+                <div class="bg-faded p-5 rounded">
+                    <p class="mb-0">Our seasonal menu features delicious snacks, baked goods, and even full meals perfect for breakfast or lunchtime. We source our ingredients from local, oragnic farms whenever possible, alongside premium vendors for specialty goods.</p>
+                    <a
+                        class="btn btn-primary" role="button" style="margin-top: 20px;padding-right: 20px;padding-left: 20px;margin-left: 400px;margin-right: 400px;" href="/products/raw_materials">More information</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-section">
+        <div class="container">
+            <div class="product-item">
+                <div class="d-flex product-item-title">
+                    <div class="d-flex mx-auto bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-0"><span class="section-heading-upper">Choose best Seat</span><span class="section-heading-lower">Booking</span></h2>
+                    </div>
+                </div><img class="img-fluid d-flex mx-auto product-item-img mb-3 mb-lg-0 rounded" src="{{url_for('static', filename='img/booking.jpg')}}">
+                <div class="bg-faded p-5 rounded">
+                    <p class="mb-0">Travelling the world for the very best quality coffee is something take pride in. When you visit us, you'll always find new blends from around the world, mainly from regions in Central and South America. We sell our blends in smaller
+                        to large bulk quantities. Please visit us in person for more details.</p><a class="btn btn-primary" role="button" style="margin-top: 20px;padding-right: 20px;padding-left: 20px;margin-left: 400px;margin-right: 400px;" href="/products/booking">More information</a></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

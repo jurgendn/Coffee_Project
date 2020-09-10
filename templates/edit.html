@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Edit profile{% endblock %}
+{% block content %}
+<h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    <li role="presentation" class="nav-item"><a class="nav-link" href="/myaccount">My account</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="text-center" style="color: rgb(253,254,255);margin-bottom: 30px;font-family: ABeeZee, sans-serif;">Edit your profile</h1>
+    </div>
+    <div class="container" style="background-color: rgb(52,58,64);">
+        <div>
+            <form action = "http://localhost:5000/edit_profile" method='POST' enctype = "multipart/form-data" style="padding-top: 20px;padding-bottom: 20px;">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="notification is-danger" style="color: rgba(255,255,255,1); font-size: 20px;text-align: center;" >
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="form-group"><label style="color: rgb(244,244,245);">Add phone number</label><input type="tel" class="form-control" placeholder="write here" name='phonenumber' /></div>
+                <div class="form-group"><label style="color: rgb(244,244,245);">Your image</label>
+                    <div></div><input type="file" style="color: rgb(245,246,248);" name="image"/></div>
+                <div class="form-group"><button class="btn btn-primary" type="submit" style="margin-top: 10px;" href="/myaccount">Update</button></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
