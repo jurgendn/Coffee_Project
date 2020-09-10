@@ -18,6 +18,10 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
                     {% if user %}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/myaccount">My account</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/MyCart">My Cart</a></li>
+                    {% endif %}
+                    {% if not user %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Log In</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -61,7 +65,8 @@
                         routine - we guarantee it!</p>
                     <div class="mx-auto intro-button"><a class="btn btn-primary d-inline-block mx-auto btn-xl"
                         role="button" href="/register" style="font-family: Raleway, sans-serif;"><i
-                            class="fa fa-user" style="font-size: 16PX;"></i>&nbsp; LOG IN / REGISTER</a></div>                   
+                            class="fa fa-user" style="font-size: 16PX;"></i>&nbsp;REGISTER</a></div>  
+                                         
                 </div>
             </div>
             {% endif %}
@@ -90,33 +95,33 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card"><a class="text-center" href="static/img/mater1.jpg"
+                        <div class="card"><a class="text-center" href="static/img/ssA.JPG"
                                 style="color: #ffffff;background-color: rgba(96,68,31,0.9);" data-lightbox="cakes">SUGGESTION
                                 A<img class="img-fluid" src="static/img/mater1.jpg"
                                     style="width: 330px;height: 269.688px;"></a>
-                            <a class="text-center" href="static/img/type D1.jpg"
+                            <a class="text-center" href="static/img/ssC.JPG"
                                 style="color: #ffffff;background-color: rgba(96,68,31,0.9);padding-bottom: 8px;"
                                 data-lightbox="cakes">SUGGESTION D<img class="img-fluid" src="static/img/type D1.jpg"
                                     style="height: 269.688px;width: 330px;"></a>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card"><a class="text-center" href="static/img/type B1.jpg"
+                        <div class="card"><a class="text-center" href="static/img/ssD.JPG"
                                 style="color: #ffffff;background-color: rgba(96,68,31,0.9);" data-lightbox="cakes">SUGGESTION
                                 B<img class="img-fluid flex-shrink-1 flex-fill" src="static/img/type B1.jpg"
                                     style="height: 269.688px;width: 330px;"></a>
-                            <a class="text-center" href="static/img/type E1.jpg"
+                            <a class="text-center" href="static/img/ssE.JPG"
                                 style="color: #ffffff;background-color: rgba(96,68,31,0.9);padding-bottom: 8px;"
                                 data-lightbox="cakes">SUGGESTION E<img class="img-fluid" src="static/img/type E1.jpg"
                                     style="height: 269.688px;width: 330px;"></a>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card"><a class="text-center" href="static/img/type C1.jpg"
+                        <div class="card"><a class="text-center" href="static/img/ssB.JPG"
                                 style="color: #ffffff;background-color: rgba(96,68,31,0.9);" data-lightbox="cakes">SUGGESTION
                                 C<img class="img-fluid" src="static/img/type C1.jpg"
                                     style="height: 269.688px;width: 330px;"></a>
-                            <a class="text-center" href="static/img/type F1.jpg"
+                            <a class="text-center" href="static/img/ssF.JPG"
                                 style="color: #ffffff;background-color: rgba(96,68,31,0.9);padding-bottom: 8px;"
                                 data-lightbox="cakes">SUGGESTION F<img class="img-fluid" src="static/img/type F1.jpg"
                                     style="height: 269.688px;width: 330px;"></a>

@@ -52,7 +52,7 @@ class User(UserMixin, db.Model):
     phone=db.Column(db.String(20))
 class Products(db.Model):
     __tablename__ = 'products'
-    productId = db.Column(db.String(100), primary_key=True)
+    ID = db.Column(db.String(100), primary_key=True)
     name = db.Column(db.String(100))
     price = db.Column(db.Integer)
     description = db.Column(db.String(1000))
@@ -65,7 +65,7 @@ class Kart(db.Model):
     __tablename__ = 'kart'
     kartid = db.Column(db.Integer, primary_key=True)
     userID = db.Column(db.Integer)
-    productId = db.Column(db.String(100))
+    ID = db.Column(db.String(100))
     amounts = db.Column(db.Integer)
     time = db.Column(db.String(100))
 class Complete(db.Model):
@@ -174,7 +174,7 @@ def coffees():
         products=Products.query.all()
         lst_products=[]
         for product in products:
-            if "RW" in product.productId:
+            if "RW" in product.ID:
                 lst_products.append(product)
         return render_template('product_coffees.html',products=lst_products,user=current_user.get_id(),search=True)
     else:
@@ -193,14 +193,14 @@ def search():
         products=Products.query.all()
         lst_products=[]
         for product in products:
-            if "RW" in product.productId:
+            if "RW" in product.ID:
                 lst_products.append(product)
         
         lst_products_finish=[]
         input_search=session['search']
         if len(input_search)>0:
             for product in lst_products:
-                if (input_search in product.productId) or (input_search in product.name):
+                if (input_search in product.ID) or (input_search in product.name):
                         lst_products_finish.append(product)
         else:
             lst_products_finish=lst_products
@@ -242,37 +242,38 @@ def search():
 # Trình bày nhiều thông tin hơn về sản phẩm
 @app.route('/productDescription', methods=['GET','POST'])
 def productDescription():
-    productId=request.args.get('productId')
-    product = Products.query.filter_by(productId=productId).first()
+    ID=request.args.get('ID')
+    print("IDDĐ", ID)
+    product = Products.query.filter_by(ID=ID).first()
     if request.method=='GET': 
-        session['productId']=productId
+        session['ID']=ID
         return render_template("productDescription.html",product=product,user=current_user.get_id())
     else:
         amount=request.form['number']
-        checkamount=Products.query.filter_by(productId=session['productId']).first()
+        checkamount=Products.query.filter_by(ID=session['ID']).first()
         if int(amount)>int(checkamount.amount):
             flash('We do not have amount of this products enough.')
-            return redirect("/productDescription?productId="+session['productId'])
+            return redirect("/productDescription?ID="+session['ID'])
         vari1=checkamount.amount
         temp=int(vari1)-int(amount)
         checkamount.amount=str(temp)
         db.session.commit()
-        productId = session['productId']
+        ID = session['ID']
         if current_user.get_id():
-            return redirect(url_for('addToCart', lst=str(amount)+'&'+str(productId)))
+            return redirect(url_for('addToCart', lst=str(amount)+'&'+str(ID)))
         else:
             flash("You need to log in bro.")
-            return redirect("/productDescription?productId="+session['productId'])
+            return redirect("/productDescription?ID="+session['ID'])
 
 #Cho sản phẩm vào giỏ hàng 
 @app.route("/addToCart")
 def addToCart():
     a=request.args.get('lst')
     lst=a.split('&')
-    productId = lst[1]
+    ID = lst[1]
     number=int(lst[0])
     time=datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S")
-    new_kart=Kart(userID=current_user.get_id(),productId=productId,amounts=number,time=time)
+    new_kart=Kart(userID=current_user.get_id(),ID=ID,amounts=number,time=time)
     db.session.add(new_kart)
     db.session.commit()
     return redirect(url_for('cart'))
@@ -281,7 +282,7 @@ def addToCart():
 @app.route('/MyCart',methods=['GET','POST'])#chinhs la cai /cart ben kia
 @login_required
 def cart():
-    all_receipt=Kart.query.filter_by(userID=current_user.get_id()).with_entities(Kart.productId,Kart.amounts,Kart.time,Kart.kartid).all()#choose all rows have userID=currentID???/
+    all_receipt=Kart.query.filter_by(userID=current_user.get_id()).with_entities(Kart.ID,Kart.amounts,Kart.time,Kart.kartid).all()#choose all rows have userID=currentID???/
     lst_productsID=[]
     lst_time=[]
     lst_kartid=[]
@@ -298,7 +299,7 @@ def cart():
     session['amount']=lst_amounts
     total=0
     for i in range(len(lst_productsID)):
-        a=Products.query.filter_by(productId=lst_productsID[i]).first()
+        a=Products.query.filter_by(ID=lst_productsID[i]).first()
         lst_products.append(a)
         total=total + a.price*lst_amounts[i]
     if request.method=='GET': return render_template('cart.html',products=lst_products,totalPrice=total,amounts=lst_amounts, rang=len(lst_amounts),times=lst_time,kartids=lst_kartid)
@@ -306,7 +307,7 @@ def cart():
         session['total_money']=total
         print("total là:",total)
         lst_productnames=[]
-        session['productID']=lst_productsID
+        session['ID']=lst_productsID
         for product in lst_products:
             lst_productnames.append(product.name)
         session['products_name']=lst_productnames
@@ -324,7 +325,7 @@ def complete():
     lst_sanpham=''
     payment=session['payment']
     for i in range(len(session['products_name'])):
-        lst_sanpham=lst_sanpham + session['productID'][i]+':'+ str(session['amount'][i])+';'
+        lst_sanpham=lst_sanpham + session['ID'][i]+':'+ str(session['amount'][i])+';'
     if len(lst_sanpham)==0:
         flash('Your cart do not have any products. Please add something to continue.')
         return redirect(url_for('cart'))
@@ -343,7 +344,7 @@ def complete():
 def remove():
     kartid=request.args.get('kartid')
     temp=Kart.query.filter_by(kartid=kartid).first()
-    add_amount=Products.query.filter_by(productId=temp.productId).first()
+    add_amount=Products.query.filter_by(ID=temp.ID).first()
     add_amount.amount=str(int(add_amount.amount)+int(temp.amounts))
     Kart.query.filter_by(kartid=kartid).delete()
     db.session.commit()
@@ -365,7 +366,7 @@ def raw_materials():
         products=Products.query.all()
         lst_products=[]
         for product in products:
-            if "CM" in product.productId or "AS" in product.productId:
+            if "CM" in product.ID or "AS" in product.ID:
                 lst_products.append(product)
         return render_template('raw_materials.html',products=lst_products,user=current_user.get_id(),search=True)
     else:
@@ -380,13 +381,13 @@ def search1():
         products=Products.query.all()
         lst_products=[]
         for product in products:
-            if "CM" in product.productId or "AS" in product.productId:
+            if "CM" in product.ID or "AS" in product.ID:
                 lst_products.append(product)
         lst_products_finish=[]
         input_search=session['search_machinery']
         if len(input_search)>0:
             for product in lst_products:
-                if (input_search in product.productId) or (input_search in product.name):
+                if (input_search in product.ID) or (input_search in product.name):
                         lst_products_finish.append(product)
         else:
             lst_products_finish=lst_products
@@ -437,7 +438,10 @@ def booking():
     else:
         check.web_booking=check.web_booking +1 
         db.session.commit()
-    return render_template('booking.html')
+    if current_user.get_id():
+        return render_template('booking.html',user=current_user)
+    else:
+        return render_template('booking.html')
 
 #set up trang store
 @app.route('/store')

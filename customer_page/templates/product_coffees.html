@@ -12,6 +12,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
                     {% if user %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/myaccount">My account</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/MyCart">My Cart</a></li>
                     {% endif %}
                 </ul>
@@ -67,7 +68,7 @@
                     {% for row in products %}
                     <td>
                         <div class="col-sm-4" style="margin-bottom: 20px;">
-                            <div class="card"><a class="text-center" href="/productDescription?productId={{row.productId}}" style="color: #221d1d;">{{row.name}}<img class="img-fluid" src="{{row.linkimg}}" /></a>
+                            <div class="card"><a class="text-center" href="/productDescription?ID={{row.ID}}" style="color: #221d1d;">{{row.name}}<img class="img-fluid" src="{{row.linkimg}}" /></a>
                                 <div class="card-body">
                                 </div>
                             </div>
