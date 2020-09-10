@@ -4,7 +4,7 @@ from products.obj import Add_Product, Filter, Products
 
 
 # Define database directory
-database = "sqlite:///DB.db"
+database = "sqlite:///./DB.db"
 
 
 # -------------------------------------------------

@@ -5,7 +5,7 @@ from sqlalchemy import MetaData, Table, create_engine
 from wtforms import Form, SelectField, SubmitField
 from wtforms.fields.html5 import DateField
 
-database = "sqlite:///DB.db"
+database = "sqlite:///./DB.db"
 
 
 class WarehouseActivities:

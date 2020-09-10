@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, Table, MetaData
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import session
 
-database = "sqlite:///DB.db"
+database = "sqlite:///./DB.db"
 
 
 class LoginForm(Form):

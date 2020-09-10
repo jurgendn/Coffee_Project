@@ -9,7 +9,7 @@ from wtforms import Form, IntegerField, StringField
 # -------------------------------------------------------
 # DB declaration
 # -----------------------------
-database = "sqlite:///DB.db"
+database = "sqlite:///./DB.db"
 
 
 # -------------------------------------------------------
