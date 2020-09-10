@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Machinery Products{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    {% if user %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/MyCart">My Cart</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 style="color: #fff;font-family: Cookie, cursive;text-align: center;font-size: 50PX;">Coffee Machinery</h1>
+    {% if search %}
+    <form action = "http://localhost:5000/products/raw_materials" method='POST' enctype = "multipart/form-data" style="padding-top: 20px;padding-bottom: 20px;">
+        <div class="container" style="margin-top: 20px;">
+            <div class="row">
+                <div class="col-md-4 offset-md-0">
+                    <div class="form-group text-break d-md-flex justify-content-md-center"><label class="text-uppercase" style="margin-right: 10px;color: #ffff;">Category</label>
+                        <select name="Category">
+                            <option value="Coffee Machine" selected>Coffee Machine</option>
+                            <option value="Accessory" selected>Accessory</option>
+                            <option value="All" selected>All Category</option>
+                        
+                        </select></div>
+                </div>
+            
+                <div class="col-md-4 offset-md-0">
+                    <div class="form-group text-break d-md-flex justify-content-md-center"><label class="text-uppercase" style="margin-right: 10px;color: #ffff;">Price</label>
+                        <select name="Price">
+                        
+                        <option value="max 50k" selected>Lower than 50 000</option>
+                        <option value="50k 100k" selected>50 000 to 100 000</option>
+                        <option value="more 100k" selected>Higher than 100 000</option>
+                        <option value="All" selected>All Price</option>
+                    </select></div>
+                </div>
+                <div class="col-md-4 offset-md-0">
+                    
+                        <div class="form-group"><input type="text" class="form-control" placeholder="Search name and ID here" name="search"/><button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button></div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </form>
+    {% endif %}
+    <section>
+        <div>
+            <div class="container">
+                {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div class="notification is-danger" style="color: rgba(255,255,255,1); font-size: 20px;text-align: center;" >
+                                    {{ messages[0] }}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                <div class="row" style="padding-bottom: 30px; margin-top: 30px;">
+                    {% for row in products %}
+                    <td>
+                        <div class="col-sm-4" style="margin-bottom: 20px;">
+                            <div class="card"><a class="text-center" href="/productDescription?productId={{row.productId}}" style="color: #221d1d;">{{row.name}}<img class="img-fluid" src="{{row.linkimg}}" /></a>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    {% endfor %}    
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

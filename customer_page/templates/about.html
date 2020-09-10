@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}About us{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;Coffe way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 style="color: rgb(229,232,235);text-align: center;font-family: Cookie, cursive;font-size: 60px;">The piece of our story</h1>
+    <section class="page-section about-heading">
+        <div>
+            <div class="row" style="background: url(static/img/about.jpg) center / cover no-repeat;">
+                <div class="col-md-6 col-xl-7" style="padding-left: 15px;">
+                    <div class="container" style="background-color: rgba(54,47,47,0.8);padding-left: 30px;">
+                        <h1 style="color: #ffffff;margin-bottom: 10px;">Original of my coffee</h1>
+                        <h3 style="color: #fff;margin-bottom: 15px;">The special coffee</h3>
+                        <p style="color: #ffffff;margin-bottom: 20px;">Founded in 1987 by the Hernandez brothers, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of South and Central America. We are dedicated to travelling the world, finding the best
+                            coffee, and bringing back to you here in our cafe.<br></p><a class="btn btn-primary" role="button" style="margin-bottom: 20px;padding-left: 20px;padding-right: 20px;font-family: Raleway, sans-serif;" href="/about/history">More information&nbsp;<i class="icon-arrow-right-circle" style="font-size: 18px;"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-section about-heading">
+        <div>
+            <div class="row" style="background: url(static/img/boki-coffee-izettle-striking-conversations-1128x484.jpg) top / cover no-repeat;">
+                <div class="col-md-6 col-xl-7" style="padding-right: 15px;">
+                    <div class="container" style="background-color: rgba(54,47,47,0.8);padding-left: 30px;">
+                        <h1 style="color: #ffffff;margin-bottom: 10px;">Sales</h1>
+                        <h3 style="color: #fff;margin-bottom: 15px;">Your satisfaction is our mission</h3>
+                        <p style="color: #ffffff;margin-bottom: 20px;">We want to bring you memorable experiences every time to Coffee Way®. Please give us your comments so that we can bring you a better experience than that.<br></p><a class="btn btn-primary" role="button" style="margin-bottom: 20px;padding-left: 20px;padding-right: 20px;font-family: Raleway, sans-serif;"
+                            href="/about/sales">More information&nbsp;<i class="icon-arrow-right-circle" style="font-size: 18px;"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}

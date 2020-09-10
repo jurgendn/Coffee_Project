@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Booking{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 style="color: rgb(255,255,255);font-family: Cookie, cursive;text-align: center;font-size: 50px;margin-bottom: 30px;">BOOKING</h1>
+    <section class="page-section cta" style="background-color: rgba();">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <div class="cta-inner text-center rounded">
+                        <h2 class="section-heading mb-4"><span class="section-heading-upper">Special service</span><span class="section-heading-lower">For You</span></h2>
+                        <p class="mb-0">It is very interesting when preparing seat for you and your friends in Coffee Way's Store. You can choose the most suitable seats to able to feeling best smell of our products.
+                            To booking, you can contact with the following phone number or contact through email:
+                        </p>
+                        <div>
+                            <h5><i class="fa fa-phone" style="font-size: 25px;"></i>&nbsp; 0369203988</h5><a  style="color: rgb(29,35,179);"><i class="fa fa-envelope-o" style="font-size: 20px;"></i>&nbsp; customerservice@coffeeway.com</a></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

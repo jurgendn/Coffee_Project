@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}All Deals{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/myaccount">My account</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 style="color: #ffffff;font-family: Cookie, cursive;font-size: 60px;text-align: center;margin-bottom: 50px;">My account</h1>
+    <section>
+        <div>
+            <div class="container">
+                <div class="row" style="padding-bottom: 30px;">
+                    <div class="col">
+                        <h1 style="color: rgb(239,243,247);padding-bottom: 20px;">Purchase history</h1>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="color: rgb(221,232,242);">ID Cart</th>
+                                        <th style="color: rgb(233,238,242);">Your ID</th>
+                                        <th style="color: rgb(233,238,242);">Products</th>
+                                        <th style="color: rgb(233,238,242);">Money</th>
+                                        <th style="color: rgb(233,238,242);">Date &amp; Time</th>
+                                        <th style="color: rgb(221,232,242);">Address</th>
+                                        <th style="color: rgb(221,232,242);">Payment</th>
+                                        
+                                    </tr>
+                                </thead>
+                                {% for deal in alldeal %}
+                                <tbody>
+                                    <tr>
+                                        <td style="color: rgb(215,223,231);">{{deal[0]}}</td>
+                                        <td style="color: rgb(238,242,245);">{{deal[1]}}</td>
+                                        <td style="color: rgb(238,242,245);">{{deal[2]}}</td>
+                                        <td style="color: rgb(238,242,245);">{{deal[3]}}</td>
+                                        <td style="color: rgb(238,242,245);">{{deal[4]}}</td>
+                                        <td style="color: rgb(238,242,245);">{{deal[5]}}</td>
+                                        <td style="color: rgb(238,242,245);">{{deal[6]}}</td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

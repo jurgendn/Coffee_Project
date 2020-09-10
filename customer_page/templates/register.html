@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;cafe way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="register-photo" style='background-color: rgb(52,58,64);' >
+        <div class="form-container">
+            <div class="image-holder" style="background: url(static/img/meeting.jpg) center / cover no-repeat;background-color: rgba(96,68,31,0.9);"></div>
+            <form method="post" style="background-color: rgba(96,68,31,0.9);" >
+                
+                <h2 class="text-center" style="color: #ffffff;"><strong>Create</strong> an account.</h2>
+                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+                <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+                <div class="form-group"><input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)"></div>
+                <div class="form-group"><input class="form-control" type="text" required="" placeholder="Your name" name="name"></div>
+                <div class="form-group"><input class="form-control" type="text" required="" placeholder="Your phone" name="phone"></div>
+                <div class="form-group">
+                    <div class="form-check"><label class="form-check-label" style="color: #ffffff;"><input class="form-check-input" type="checkbox" name="agree">I agree to the license terms.</label></div>
+                </div>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger" style="color: rgb(101, 127, 240); font-size: 20px;">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+                {% endwith %}
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div><a class="already" href="/login" style="color: #ffffff;">You already have an account? Login here.</a></form>
+        </div>
+    </div>
+{% endblock %}
