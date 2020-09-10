@@ -102,7 +102,7 @@ def get_all_categories():
     cat = [prd.category for prd in prd_list if prd not in cat]
     return cat
 
-    
+
 # Filter by price range
 #   Input: Price range:
 #           min: 0
@@ -156,3 +156,15 @@ def remove(prd_id):
     Prd_Table.delete(whereclause=Prd_Table.c.ID == prd_id).execute()
     close_db(engine, conn)
     return True
+
+
+def get_filter_prd(category, lower, upper):
+    prd = get_products()
+    target_prd = []
+    for product in prd:
+        if product.price >= float(lower) and product.price <= float(upper):
+            if category == 'All':
+                target_prd.append(product)
+            elif product.category == category:
+                target_prd.append(product)
+    return target_prd

@@ -2,7 +2,8 @@ from wtforms import Form, StringField, IntegerField, SelectField, SubmitField, v
 from wtforms.fields.html5 import IntegerRangeField, IntegerField
 import products.products_app as ppa
 
-### Forms
+# Forms
+
 
 class Add_Product(Form):
     name = StringField("Name: ")
@@ -18,14 +19,14 @@ class Add_Product(Form):
 
 class Filter(Form):
     keyword = StringField('Keywords')
-    category = SelectField("Category: ", choices=[('Coffee Machine', 'Coffee Machine'), (
-        'Accessory', 'Accessory'), ('Raw Material', 'Raw Material'), ('Others', 'Others'), ('All', 'All')])
+    category = SelectField("Category: ", choices=[('All', 'All'), ('Coffee Machine', 'Coffee Machine'), (
+        'Accessory', 'Accessory'), ('Raw Material', 'Raw Material'), ('Others', 'Others'), ])
     lower_bound = IntegerField("From: ")
     upper_bound = IntegerField("To: ")
-    brand = StringField("Brand: ")
     filt = SubmitField("Filter")
 
-### Products
+# Products
+
 
 class Products:
 

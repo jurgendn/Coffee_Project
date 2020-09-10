@@ -32,6 +32,12 @@ class AdminInfo(Form):
     email = EmailField("Email")
 
 
+class ChangePasswd(Form):
+    old_password = PasswordField("Old Password")
+    new_password = PasswordField("New Password")
+    confirm_passwd = PasswordField("Confirm Password")
+
+
 class UploadAvt(Form):
     uploader = FileField("Chooose File")
     save = SubmitField("Save Change")
@@ -82,3 +88,23 @@ def change_profile_image(email):
         close_db(engine, conn)
         print("Invalid")
     close_db(engine, conn)
+
+
+def update_info(name, email, phone, address):
+    engine, conn, Adm = connect_db()
+    Adm.update(whereclause=Adm.c.email==email).values(
+        name=name, email=email, phone=phone, address=address).execute()
+    close_db(engine, conn)
+
+def update_passwd(email, old_pass, new_pass, confirm_pass):
+    admin = get_admin_info(session['email'])
+    print(check_password_hash(admin.passwd, old_pass))
+    if not check_password_hash(admin.passwd, old_pass):
+        print(check_password_hash(admin.passwd, old_pass))
+        return False
+    if new_pass != confirm_pass:
+        return False
+    engine, conn, Adm = connect_db()
+    Adm.update(whereclause=Adm.c.email==email).values(passwd=generate_password_hash(new_pass, method='sha256')).execute()
+    close_db(engine, conn) 
+    return True

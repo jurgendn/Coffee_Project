@@ -371,7 +371,7 @@ def complete():
     if len(lst_sanpham) == 0:
         flash('Your cart do not have any products. Please add something to continue.')
         return redirect(url_for('cart'))
-    new_com = Complete(ID="{}_{}".format(current_user, session['date']), user_id=current_user.get_id(
+    new_com = Complete(ID="{}_{}".format(current_user.get_id(), session['date']), user_id=current_user.get_id(
     ), product_list=lst_sanpham, total=session['total'], date=session['date'], address=add, method=method)
     db.session.add(new_com)
     db.session.commit()
@@ -379,7 +379,7 @@ def complete():
         Kart.query.filter_by(cartID=cartID).delete()
         db.session.commit()
     if method == "Credit":
-        flash("Your ID Cart is "+str(new_com.comid) +
+        flash("Your ID Cart is "+str(new_com.ID) +
               ". We will send you products as soon as possible when receive money.")
     return redirect(url_for('home'))
 
@@ -528,7 +528,7 @@ def myaccount():
 @app.route('/alldeal')
 def alldeal():
     lst_deal = Complete.query.filter_by(user_id=current_user.get_id()).with_entities(
-        Complete.comid, Complete.user_id, Complete.product_list, Complete.total, Complete.time, Complete.address, Complete.method).all()
+        Complete.ID, Complete.user_id, Complete.product_list, Complete.total, Complete.date, Complete.address, Complete.method).all()
     print("lst_deal:", lst_deal)
     return render_template("all_deal.html", alldeal=lst_deal)
 

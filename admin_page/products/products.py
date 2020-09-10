@@ -1,4 +1,5 @@
 from datetime import datetime, date, timedelta, tzinfo, timezone
+from math import inf
 
 from flask import render_template, Blueprint, request, redirect, current_app, make_response, session
 from products.products_app import Products, Add_Product, Filter
@@ -13,7 +14,15 @@ products = Blueprint('products', __name__,
 @products.route("/", methods=["GET"])
 def products_page():
     form = Filter()
-    return render_template('product.html', products=ppa.get_products(), form=form)
+    cat = request.args.get('category')
+    lower = request.args.get('lower_bound')
+    upper = request.args.get('upper_bound')
+    if lower == '':
+        lower = 0
+    if upper == '':
+        upper = inf
+
+    return render_template('product.html', products=ppa.get_filter_prd(cat, lower, upper), form=form)
 
 
 @products.route("/edit", methods=["GET", "POST"])
@@ -52,6 +61,7 @@ def get_new_prd():
     new_product = Products(ID, name, category, price,
                            amount, brand, description)
     ppa.add_products(new_product)
+    ww.add_activity(ID, amount)
     return redirect("/products/")
 
 
