@@ -1,15 +1,19 @@
-from flask import render_template, Blueprint, request, redirect, current_app, make_response
-from products.products_app import Products, Add_Product
+from datetime import datetime, date, timedelta, tzinfo, timezone
+
+from flask import render_template, Blueprint, request, redirect, current_app, make_response, session
+from products.products_app import Products, Add_Product, Filter
 import products.products_app as ppa
+import warehouse.warehouse_app as ww
 from flask_sqlalchemy import SQLAlchemy
 
 products = Blueprint('products', __name__,
                      static_folder="static", template_folder="templates")
 
 
-@products.route("/")
+@products.route("/", methods=["GET"])
 def products_page():
-    return render_template('product.html', products=ppa.get_products())
+    form = Filter()
+    return render_template('product.html', products=ppa.get_products(), form=form)
 
 
 @products.route("/edit", methods=["GET", "POST"])
@@ -21,7 +25,8 @@ def edit_products():
         prd[3]), int(prd[4]), prd[5], prd[6])
     resp = make_response(render_template(
         'product_spec.html', title="Edit Product", action="edit_prd", prd=prd_obj, form=form))
-    resp.set_cookie("ProductID", prd_id, path='/', expires=60*60*24)
+    resp.set_cookie("ProductID", prd_id, path='/',
+                    expires=datetime.now() + timedelta(minutes=70))
     return resp
 
 
@@ -55,16 +60,21 @@ def edit_prd():
     form = Add_Product(request.form)
     ID = request.cookies.get("ProductID")
     print(ID)
+    old_amount = ppa.get_prd_by_id(ID)[0][4]
     name = form.name.data
     category = form.category.data
     price = form.price.data
     amount = form.amount.data
+    if amount > old_amount:
+        ww.add_activity(ID, amount - old_amount)
     brand = form.brand.data
     description = form.description.data
     new_product = Products(ID, name, category, price,
                            amount, brand, description)
     ppa.update_product(prd=new_product)
-    return redirect("/products")
+    resp = make_response(redirect("/products"))
+    resp.delete_cookie("ProductID")
+    return resp
 
 
 @products.route("/rm", methods=["GET", "POST"])

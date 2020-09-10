@@ -1,5 +1,6 @@
 from wtforms import Form, StringField, IntegerField, SelectField, SubmitField, validators
-from wtforms.fields.html5 import IntegerRangeField
+from wtforms.fields.html5 import IntegerRangeField, IntegerField
+import products.products_app as ppa
 
 ### Forms
 
@@ -8,7 +9,7 @@ class Add_Product(Form):
     category = SelectField("Category: ", choices=[('Coffee Machine', 'Coffee Machine'), (
         'Accessory', 'Accessory'), ('Raw Material', 'Raw Material'), ('Others', 'Others')])
     price = IntegerField("Price: ")
-    amount = IntegerRangeField("Amount: ", [validators.NumberRange(min=0)])
+    amount = IntegerField("Amount")
     brand = StringField("Brand: ")
     description = StringField("Description: ")
     save = SubmitField("Save")
@@ -19,7 +20,8 @@ class Filter(Form):
     keyword = StringField('Keywords')
     category = SelectField("Category: ", choices=[('Coffee Machine', 'Coffee Machine'), (
         'Accessory', 'Accessory'), ('Raw Material', 'Raw Material'), ('Others', 'Others'), ('All', 'All')])
-    price = IntegerField("Price: ")
+    lower_bound = IntegerField("From: ")
+    upper_bound = IntegerField("To: ")
     brand = StringField("Brand: ")
     filt = SubmitField("Filter")
 

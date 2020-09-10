@@ -1,5 +1,12 @@
 {% extends 'base.html' %} {% block title %} Dashboard {% endblock %} {% block
-content %}
+content %} {% with message = get_flashed_messages() %} {% if message %}
+<ul class="flashes">
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 <div class="d-flex flex-column" id="content-wrapper">
   <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">

@@ -96,6 +96,13 @@ def get_prd_by_categories(cat):
     return prd_by_cat
 
 
+def get_all_categories():
+    prd_list = get_products()
+    cat = []
+    cat = [prd.category for prd in prd_list if prd not in cat]
+    return cat
+
+    
 # Filter by price range
 #   Input: Price range:
 #           min: 0
