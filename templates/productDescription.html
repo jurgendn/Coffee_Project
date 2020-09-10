@@ -1,53 +1,64 @@
 {% extends "base.html" %}
 {% block title %}Products Description{% endblock %}
 {% block content %}
-    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
-    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
-        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="nav navbar-nav mx-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
-                    {% if user %}
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/myaccount">My account</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/MyCart">My Cart</a></li>
-                    {% endif %}
-                </ul>
-            </div>
+<h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i
+            class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
+<nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+    <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i
+                class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse"
+            data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav mx-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home"
+                            style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/about"
+                        style="color: rgba(255,255,255,0.7);">About us</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                {% if user %}
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/myaccount">My account</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/MyCart">My Cart</a></li>
+                {% endif %}
+            </ul>
         </div>
-    </nav>
-    <h1 style="color: #ffffff;font-family: Cookie, cursive;font-size: 60px;text-align: center;margin-bottom: 50px;">Description</h1>
-    <section>
-        <div>
-            <div class="container">
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <div class="notification is-danger" style="color: rgba(255,255,255,1); font-size: 20px;text-align: center;" >
-                            {{ messages[0] }}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-                <div class="row" style="padding-bottom: 30px;">
-                    <div class="col-sm-12 col-md-6 offset-md-3" style="margin-top: 50px;margin-bottom: 20px;">
-                        <div class="card"><img class="card-img-top w-100 d-block" src="{{product.linkimg}}"" />
-                            <div class="card-body">
-                                <h4 class="card-title">{{product.name}}<br /></h4>
-                                <h4 class="card-title">Price: {{product.price}} VND</h4>
-                                <h4 class="card-title">Brand: {{product.brand}}</h4>
-                                <p style="font-size: 25px;font-family: Raleway">{{product.description}}</p>
-                            </div>
-                        </div>
+    </div>
+</nav>
+<h1 style="color: #ffffff;font-family: Cookie, cursive;font-size: 60px;text-align: center;margin-bottom: 50px;">
+    Description</h1>
+<section>
+    <div>
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification is-danger" style="color: rgba(255,255,255,1); font-size: 20px;text-align: center;">
+                {{ messages[0] }}
+            </div>
+            {% endif %}
+            {% endwith %}
+            <div class="row" style="padding-bottom: 30px;">
+                <div class="col-sm-12 col-md-6 offset-md-3" style="margin-top: 50px;margin-bottom: 20px;">
+                    <div class="card"><img class="card-img-top w-100 d-block" src="{{product.linkimg}}"" />
+                            <div class=" card-body">
+                        <h4 class="card-title">{{product.name}}<br /></h4>
+                        <h4 class="card-title">Price: {{product.price}} VND</h4>
+                        <h4 class="card-title">Brand: {{product.brand}}</h4>
+                        <p style="font-size: 25px;font-family: Raleway">{{product.description}}</p>
                     </div>
-                    <form action="/productDescription" method="POST">
-                        <p><input type="text" name="number" placeholder="amounts you want buy"></p>
-                        <button class="btn btn-primary btn-block" type="submit">Comfirm</button>
-                    </form>
-                    
                 </div>
             </div>
+            <form action="/productDescription" method="POST">
+                <p><input type="text" name="number" placeholder="amounts you want buy"></p>
+                <button class="btn btn-primary btn-block" type="submit">Comfirm</button>
+            </form>
+
         </div>
-    </section>
+    </div>
+    </div>
+    <div id="hyvor-talk-view"></div>
+    <script type="text/javascript">
+        var HYVOR_TALK_WEBSITE = 1524; // DO NOT CHANGE THIS var HYVOR_TALK_CONFIG = { url: false, id: false }; 
+    </script>
+    <script async type="text/javascript" src="https://www.jurgendn.github.io/talk.hyvor.com/web-api/embed"></script>
+</section>
 {% endblock %}
