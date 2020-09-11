@@ -9,7 +9,7 @@ content %}
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <form method="post" action="/products/{{action}}">
+            <form method="post" action="/products/{{action}}" enctype="multipart/form-data">
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-group">
@@ -76,20 +76,21 @@ content %}
                       {{form.amount(oninput="num.value = this.value",
                       value=prd.amount)}}
                     </div>
+                    <div class="col-md-12 col-lg-8">
+                      {{form.img(class="col-form-label",
+                      style="font-family: Lato, sans-serif;font-weight:
+                      normal;opacity: 0.75;font-size: 18px;")}}
+                    </div>
                   </div>
                 </div>
-                <div
-                  class="col-md-12 text-left text-sm-left text-md-left text-lg-left text-xl-left"
-                >
-                  {{form.save(class="btn btn-primary", style="margin:
-                  20px;width: 100px;background-color: #4b88e4;")}}
-                  {{form.cancel(class="btn btn-primary", style="margin:
-                  20px;width: 100px;background-color: #fc5a5a;")}}
-                </div>
               </div>
-              <hr />
-            </form>
+              <div class="col-md-12 text-left text-sm-left text-md-left text-lg-left text-xl-left">
+                {{form.save(class="btn btn-primary", style="margin:
+                  20px;width: 100px;background-color: #4b88e4;")}}
+              </div>
           </div>
+          <hr />
+          </form>
         </div>
       </div>
     </div>

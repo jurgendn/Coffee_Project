@@ -32,7 +32,6 @@ def update_info():
 
 @admin_manage.route("/passwd_Change", methods=["POST"])
 def change_pwd():
-    admin = ad.get_admin_info(session['email'])
     old_passwd = request.form.get('old_password')
     new_passwd = request.form.get('new_password')
     confirm_passwd = request.form.get('confirm_passwd')

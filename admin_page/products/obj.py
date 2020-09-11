@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, IntegerField, SelectField, SubmitField, validators
+from wtforms import Form, StringField, IntegerField, SelectField, SubmitField, validators, FileField, Field
 from wtforms.fields.html5 import IntegerRangeField, IntegerField
 import products.products_app as ppa
 
@@ -13,8 +13,8 @@ class Add_Product(Form):
     amount = IntegerField("Amount")
     brand = StringField("Brand: ")
     description = StringField("Description: ")
+    img = FileField("Add Photo")
     save = SubmitField("Save")
-    cancel = SubmitField("Cancel")
 
 
 class Filter(Form):
@@ -25,12 +25,11 @@ class Filter(Form):
     upper_bound = IntegerField("To: ")
     filt = SubmitField("Filter")
 
+
 # Products
-
-
 class Products:
 
-    def __init__(self, ID, name, category, price, amount, brand, description):
+    def __init__(self, ID, name, category, price, amount, brand, description, prd_img):
         self.ID = ID
         self.name = name
         self.category = category
@@ -38,3 +37,4 @@ class Products:
         self.amount = amount
         self.brand = brand
         self.description = description
+        self.linkimg = prd_img

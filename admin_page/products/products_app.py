@@ -59,7 +59,7 @@ def get_products():
     product_list = []
     for prd in product_db:
         product_list.append(
-            Products(prd[0], prd[1], prd[2], prd[3], prd[4], prd[5], prd[6]))
+            Products(prd[0], prd[1], prd[2], prd[3], prd[4], prd[5], prd[6], prd[7]))
     return product_list
 
 
@@ -91,7 +91,7 @@ def get_prd_by_categories(cat):
     prd = Prd_Table.select(
         whereclause=Prd_Table.c.category == cat).execute().fetchall()
     prd_by_cat = [Products(p[0], p[1], p[2], p[3], p[4],
-                           p[5], p[6]) for p in prd]
+                           p[5], p[6], p[7]) for p in prd]
     close_db(engine, conn)
     return prd_by_cat
 
@@ -113,7 +113,7 @@ def get_prd_by_price_range(min=0, max=1e20):
     prd = Prd_Table.select(whereclause=Prd_Table.c.price >=
                            min and Prd_Table.c.price <= max).execute().fetchall()
     prd_by_price_range = [Products(p[0], p[1], p[2], p[3], p[4],
-                                   p[5], p[6]) for p in prd]
+                                   p[5], p[6], p[7]) for p in prd]
     close_db(engine, conn)
     return prd_by_price_range
 
@@ -127,7 +127,7 @@ def get_prd_by_brand(brand):
     prd = Prd_Table.select(whereclause=Prd_Table.c.brand ==
                            brand).execute().fetchall()
     prd_by_brand = [Products(p[0], p[1], p[2], p[3], p[4],
-                             p[5], p[6]) for p in prd]
+                             p[5], p[6], p[7]) for p in prd]
     close_db(engine, conn)
     return prd_by_brand
 

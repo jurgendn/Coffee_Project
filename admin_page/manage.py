@@ -39,7 +39,7 @@ def check_for_existing_admin():
 def homepage():
     if check_for_existing_admin():
         flash("Successfully")
-        return render_template("index.html")
+        return redirect("/dashboard")
     return redirect("/admin/login")
 
 
