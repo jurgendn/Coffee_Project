@@ -1,0 +1,140 @@
+{% extends 'base.html' %} {% block title %} Profile {% endblock %} {% block
+content %}
+<div class="container-fluid">
+  <h3 class="text-dark mb-4">{{admin.permission}}</h3>
+  <div class="row mb-3">
+    <div
+      class="col-lg-4 d-lg-flex flex-column justify-content-lg-center align-items-lg-center"
+    >
+      <div class="card mb-3">
+        <div
+          class="card-body text-center shadow"
+          style="width: 250px; height: 330px"
+        >
+          <img
+            class="rounded-circle mb-3 mt-4"
+            src="{{admin.avatar}}"
+            style="max-height: 200px; max-width: 200px"
+          />
+          <div class="mb-3" style="padding-top: 50px">
+            <a href="upload_avatar"
+              ><button class="btn btn-primary btn-sm" type="button">
+                Change Photo
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="row mb-3 d-none">
+        <div class="col">
+          <div class="card text-white bg-primary shadow">
+            <div class="card-body">
+              <div class="row mb-2">
+                <div class="col">
+                  <p class="m-0">Peformance</p>
+                  <p class="m-0"><strong>65.2%</strong></p>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-rocket fa-2x"></i>
+                </div>
+              </div>
+              <p class="text-white-50 small m-0">
+                <i class="fas fa-arrow-up"></i>&nbsp;5% since last month
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-white bg-success shadow">
+            <div class="card-body">
+              <div class="row mb-2">
+                <div class="col">
+                  <p class="m-0">Peformance</p>
+                  <p class="m-0"><strong>65.2%</strong></p>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-rocket fa-2x"></i>
+                </div>
+              </div>
+              <p class="text-white-50 small m-0">
+                <i class="fas fa-arrow-up"></i>&nbsp;5% since last month
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card shadow mb-3">
+            <div class="card-header py-3">
+              <p class="text-primary m-0 font-weight-bold">User Settings</p>
+            </div>
+            <div class="card-body">
+              <form action="/admin/update_info" , method="GET">
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <strong>{{form.name.label}}</strong>
+                      {{form.name(class="form-control", type="text",
+                      value=admin.name)}}
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <strong>{{form.address.label}}</strong>
+                      {{form.address(class="form-control",
+                      value=admin.address)}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <strong>{{form.email.label}}</strong>
+                      {{form.email(class="form-control", value=admin.email)}}
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <strong>{{form.phone.label}}</strong>
+                      {{form.phone(class="form-control", value=admin.phone)}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-sm" type="submit">
+                    Save
+                  </button>
+                </div>
+              </form>
+              <button class="btn btn-primary btn-sm" onclick="show_box()">
+                Change Password
+              </button>
+              <div id="passwordBox" style="display: none;">
+                <form action="/admin/passwd_Change" method="post">
+                  {{passwd_form.old_password(class="form-control",
+                  placeholder="Old Password", style="margin-top: 20px; width: 300px;")}}
+                  {{passwd_form.new_password(class="form-control",
+                  placeholder="New Password", style="margin-top: 20px; width: 300px;")}}
+                  {{passwd_form.confirm_passwd(class="form-control",
+                  placeholder="Re-Type Password", style="margin-top: 20px;  width: 300px;")}}
+                  <button
+                    class="btn btn-primary btn-sm"
+                    type="submit"
+                    style="margin-top: 20px"
+                  >
+                    Confirm
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="static/js/changePassword.js"></script>
+{% endblock %}

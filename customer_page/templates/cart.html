@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}My Cart{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/myaccount">My account</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/MyCart">&nbsp;My Cart</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 style="color: #ffffff;font-family: Cookie, cursive;font-size: 60px;text-align: center;margin-bottom: 50px;">CART</h1>
+    <section>
+        <div>
+            <div class="container">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="notification is-danger" style="color: rgba(255,255,255,1); font-size: 20px;text-align: center;" >
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="row" style="padding-bottom: 30px;">
+            {% for i in range(rang) %}
+                    <td>
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img class="img-fluid" src="{{products[i].linkimg}}" />
+                                    <h4 class="card-title">{{products[i].name}} </h4>
+                                    <h4 class="card-title">Price: {{products[i].price}} $/1 product</h4>
+                                    <h4 class="card-title">Amounts: {{amounts[i]}}</h4>
+                                    <div class="card"><a class="text-center" href="/remove?cartID={{cartIDs[i]}}" style="color: #221d1d;background-color: rgb(230,167,86);" >Remove</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+            {% endfor %}
+                </div>
+            </div>
+        </div>
+            <h3 style="color: #ffffff;font-family: Cookie, cursive;font-size: 30px;text-align: center;margin-bottom: 50px;">Total: {{totalPrice}} VND </h3>
+        </div>
+        <form action="/MyCart" method="POST">
+            <div class="container">
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-6 offset-md-3">
+                        <input type="text" class="form-control" placeholder="Add address" name='add'/><br>
+                        <div class="form-group"><select class="form-control" name="payment"><option value="Cash" selected>Cash through shipper</option><option value="Credit" selected>Credit:transfer to 100223030022 Vietcombank-- content:ID Cart</option></select></div>
+                        <button class="btn btn-primary" type="submit">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </section>
+        
+    
+{% endblock %}

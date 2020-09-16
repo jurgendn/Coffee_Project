@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i
+                class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;CoffeE WAY</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i
+                    class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse"
+                data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home"
+                                style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about"
+                            style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    {% if user %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/myaccount">My account</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/MyCart">My Cart</a></li>
+                    {% endif %}
+                    {% if not user %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="notification is-danger" style="color: rgba(255,255,255,1); font-size: 20px;text-align: center;" >
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+    <section class="page-section clearfix">
+        <div class="container">
+            {% if user %}
+            <div class="intro"><img class="img-fluid intro-img mb-3 mb-lg-0 rounded" src="static/img/discover.jpg">
+                <div class="intro-text left-0 text-centerfaded p-5 rounded bg-faded text-center">
+                    <h2 class="section-heading mb-4"><span class="section-heading-upper">Fresh Coffee</span><span
+                            class="section-heading-lower">Let's Discover</span></h2>
+                    <p class="mb-3">Conglaturate to log in sucessfully in the world of Coffee! We have many many and many kinds of coffee and raw materials or machinery. Moreover, there are some interesting service you can try.</p>
+                    
+                    <div class="mx-auto intro-button"><a class="btn btn-primary d-inline-block mx-auto btn-xl"
+                        role="button" href="/logout" style="font-family: Raleway, sans-serif;"><i
+                            class="fa fa-power-off" style="font-size: 16PX;"></i>&nbsp; LOG out</a></div>
+                    
+                   
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <section class="page-section clearfix">
+        <div class="container">
+            {% if not user %}
+            <div class="intro"><img class="img-fluid intro-img mb-3 mb-lg-0 rounded" src="static/img/intro.jpg">
+                <div class="intro-text left-0 text-centerfaded p-5 rounded bg-faded text-center">
+                    <h2 class="section-heading mb-4"><span class="section-heading-upper">Fresh Coffee</span><span
+                            class="section-heading-lower">Worth Drinking</span></h2>
+                    <p class="mb-3">Every cup of our quality artisan coffee starts with locally sourced, hand picked
+                        ingredients. Once you try it, our coffee will be a blissful addition to your everyday morning
+                        routine - we guarantee it!</p>
+                    <div class="mx-auto intro-button"><a class="btn btn-primary d-inline-block mx-auto btn-xl"
+                        role="button" href="/register" style="font-family: Raleway, sans-serif;"><i
+                            class="fa fa-user" style="font-size: 16PX;"></i>&nbsp;REGISTER</a></div>  
+                                         
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <section class="page-section cta">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <div class="cta-inner text-center rounded">
+                        <h2 class="section-heading mb-4"><span class="section-heading-upper">Our Promise</span><span
+                                class="section-heading-lower">To You</span></h2>
+                        <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you
+                            with friendly service, a welcoming atmosphere, and above all else, excellent products made
+                            with the highest quality ingredients. If you are not satisfied,
+                            please let us know and we will do whatever we can to make things right!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-section cta" style="background-color: rgba(96,68,31,0.9);padding-bottom: 50px;">
+        <div style="padding-bottom: 50px;">
+            <h1 style="color: #ffffff;text-align: center;margin-bottom: 30PX;font-family: Raleway, sans-serif;">
+                SUGGESTION</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card"><a class="text-center" href="static/img/ssA.JPG"
+                                style="color: #ffffff;background-color: rgba(96,68,31,0.9);" data-lightbox="cakes">SUGGESTION
+                                A<img class="img-fluid" src="static/img/mater1.jpg"
+                                    style="width: 330px;height: 269.688px;"></a>
+                            <a class="text-center" href="static/img/ssC.JPG"
+                                style="color: #ffffff;background-color: rgba(96,68,31,0.9);padding-bottom: 8px;"
+                                data-lightbox="cakes">SUGGESTION D<img class="img-fluid" src="static/img/type D1.jpg"
+                                    style="height: 269.688px;width: 330px;"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card"><a class="text-center" href="static/img/ssD.JPG"
+                                style="color: #ffffff;background-color: rgba(96,68,31,0.9);" data-lightbox="cakes">SUGGESTION
+                                B<img class="img-fluid flex-shrink-1 flex-fill" src="static/img/type B1.jpg"
+                                    style="height: 269.688px;width: 330px;"></a>
+                            <a class="text-center" href="static/img/ssE.JPG"
+                                style="color: #ffffff;background-color: rgba(96,68,31,0.9);padding-bottom: 8px;"
+                                data-lightbox="cakes">SUGGESTION E<img class="img-fluid" src="static/img/type E1.jpg"
+                                    style="height: 269.688px;width: 330px;"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card"><a class="text-center" href="static/img/ssB.JPG"
+                                style="color: #ffffff;background-color: rgba(96,68,31,0.9);" data-lightbox="cakes">SUGGESTION
+                                C<img class="img-fluid" src="static/img/type C1.jpg"
+                                    style="height: 269.688px;width: 330px;"></a>
+                            <a class="text-center" href="static/img/ssF.JPG"
+                                style="color: #ffffff;background-color: rgba(96,68,31,0.9);padding-bottom: 8px;"
+                                data-lightbox="cakes">SUGGESTION F<img class="img-fluid" src="static/img/type F1.jpg"
+                                    style="height: 269.688px;width: 330px;"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 offset-md-4"><a class="btn btn-primary d-sm-flex d-md-flex justify-content-sm-center align-items-sm-start justify-content-md-center align-items-md-end justify-content-lg-center justify-content-xl-center" role="button" style="font-size: 26px;box-shadow: 0px 0px;margin-top: 20PX;"
+                        href="/products">GO TO PRODUCT</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

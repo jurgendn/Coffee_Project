@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block title %} Upload Avatar {% endblock %} {%
+block content %}
+<div class="container-fluid">
+  <h3 class="text-dark mb-4">Upload avatar</h3>
+  <div>
+    <form action="avt_upload_xyz" method="post" enctype="multipart/form-data">
+      <div class="card mb-3">
+        <div class="card-body text-center shadow"  style="width: 100%; height: 60%">
+          <img
+            class="rounded-circle mb-3 mt-4"
+            src={{admin_img}}
+            style="
+              max-width: 40%;
+              max-height: 40%;
+            "
+          />
+          <div class="mb-3">{{form.uploader()}}</div>
+          <div class="mb-3">{{form.save(class="btn btn-primary btn-sm")}}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

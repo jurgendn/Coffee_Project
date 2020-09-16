@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Coffee Way's  Store{% endblock %}
+{% block content %}
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="site-heading-lower"><i class="icon ion-coffee" style="font-size: 100px;"></i>&nbsp;coffee way</span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav" style="margin-bottom: 50px;">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#"><i class="icon ion-coffee" style="font-size: 45px;"></i></a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/"><i class="fa fa-home" style="font-size: 20px;"></i>&nbsp; Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/about" style="color: rgba(255,255,255,0.7);">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/products">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/store">&nbsp;Store</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div>
+            <h1 data-aos="fade" data-aos-duration="200" style="color: #fff;margin-bottom: 40px;font-family: Cookie, cursive;font-size: 60px;margin-left: 0px;text-align: center;">Coffee Way Store</h1>
+            <div class="row d-md-flex align-items-md-center" style="background: url(static/img/store.jpg) right / auto no-repeat;min-height: 349px;">
+                <div class="col-md-4 col-lg-6 text-center d-md-flex flex-column align-items-md-center" style="background-color: rgba(54,47,47,0.8);text-align: center;">
+                    <h2 data-aos="fade" data-aos-duration="200" data-aos-delay="200" style="color: #fff;margin-bottom: 20px;margin-top: 20px;text-align: center;font-size: 20px;font-family: ABeeZee, sans-serif;"><i class="fa fa-wifi"></i>&nbsp; Wifi free</h2>
+                    <h2 data-aos="fade" data-aos-duration="200" data-aos-delay="400" style="color: #fff;margin-bottom: 20px;margin-top: 20px;text-align: center;font-size: 20px;"><i class="fa fa-camera"></i>&nbsp; Beautiful background</h2>
+                    <h2 data-aos="fade" data-aos-duration="200" data-aos-delay="800" style="color: #fff;margin-bottom: 20px;margin-top: 20px;text-align: center;font-size: 20px;"><i class="fa fa-search"></i>&nbsp; 12 Tran Dai Nghia St, Hai Ba Trung, Ha Noi&nbsp;</h2>
+                    <h2 data-aos="fade" data-aos-duration="200" data-aos-delay="1000" style="color: #fff;margin-bottom: 20px;margin-top: 20px;text-align: center;font-size: 20px;"><i class="fa fa-newspaper-o"></i>&nbsp; Quiet Space</h2>
+                    <h2 data-aos="fade" data-aos-duration="200" data-aos-delay="1200" style="color: #fff;margin-bottom: 20px;margin-top: 20px;text-align: center;font-size: 20px;"><i class="fa fa-phone"></i>&nbsp; 0369888888</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-section cta" style="margin-top: 0px;padding-top: 40px;padding-bottom: 40px;background-color: rgba(230,167,86,0);">
+        <div class="container">
+            <div class="row" style="background-color: rgba(230,167,86,0);border-radius: 25px;">
+                <div class="col-xl-9 mx-auto">
+                    <div class="cta-inner text-center rounded">
+                        <h2 class="section-heading mb-5"><span class="section-heading-upper">Come On In</span><span class="section-heading-lower">We're Open</span></h2>
+                        <ul class="list-unstyled mx-auto list-hours mb-5 text-left">
+                            <li class="d-flex list-unstyled-item list-hours-item">Sunday<span class="ml-auto">Closed</span></li>
+                            <li class="d-flex list-unstyled-item list-hours-item">Monday - Friday<span class="ml-auto">7:00 AM to 8:00 PM</span></li>
+                            <li class="d-flex list-unstyled-item list-hours-item">Saturday<span class="ml-auto">9:00 AM to 5:00 PM</span></li>
+                        </ul>
+                        <p class="address mb-5"><em></em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
