@@ -24,7 +24,7 @@ def get_all_transaction(table):
 
 def get_total_revenue(table):
     trs = get_all_transaction(table)
-    return sum(t[3] for t in trs)
+    return sum(t[4] for t in trs)
 
 def get_total_visit(table):
     vs = get_all_transaction(table)

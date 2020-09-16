@@ -146,7 +146,7 @@ def update_product(prd):
 def add_products(prd):
     engine, conn, Prd_Table = connect_db()
     Prd_Table.insert(None).values(ID=prd.ID, name=prd.name, category=prd.category,
-                                  price=prd.price, amount=prd.amount, brand=prd.brand, description=prd.description, lock=1).execute()
+                                  price=prd.price, amount=prd.amount, brand=prd.brand, description=prd.description, lock=0).execute()
     close_db(engine, conn)
     return True
 
@@ -158,11 +158,11 @@ def remove(prd_id):
     return True
 
 
-def get_filter_prd(category, lower, upper):
+def get_filter_prd(category, lower, upper, status):
     prd = get_products()
     target_prd = []
     for product in prd:
-        if product.price >= float(lower) and product.price <= float(upper):
+        if product.price >= float(lower) and product.price <= float(upper) and product.lock==status:
             if category == 'All':
                 target_prd.append(product)
             elif product.category == category:

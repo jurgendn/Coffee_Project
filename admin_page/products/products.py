@@ -17,12 +17,11 @@ def products_page():
     cat = request.args.get('category')
     lower = request.args.get('lower_bound')
     upper = request.args.get('upper_bound')
-    if lower == '':
-        lower = 0
-    if upper == '':
-        upper = inf
-
-    return render_template('product.html', products=ppa.get_filter_prd(cat, lower, upper), form=form)
+    status = int(request.args.get('status')
+                 ) if request.args.get('status') else 0
+    lower = lower if lower != '' else 0
+    upper = upper if upper != '' else inf
+    return render_template('product.html', products=ppa.get_filter_prd(cat, lower, upper, int(status)), form=form)
 
 
 @products.route("/edit", methods=["GET", "POST"])
@@ -68,7 +67,7 @@ def get_new_prd():
     # f.write(image.read())
     # f.close()
     new_product = Products(ID, name, category, price,
-                           amount, brand, description, path)
+                           amount, brand, description, path, lock=0)
     ppa.add_products(new_product)
     ww.add_activity(ID, amount)
     return redirect("/products/?category=All&lower_bound=&upper_bound=&brand=&filt=Filter")
@@ -102,7 +101,7 @@ def edit_prd():
                            amount, brand, description, path, lock)
     ppa.update_product(prd=new_product)
     resp = make_response(redirect(
-        "/products/?category=All&lower_bound=&upper_bound=&brand=&filt=Filter"))
+        "/products/?category=All&lower_bound=&upper_bound=&brand=&status=0&filt=Filter"))
     resp.delete_cookie("ProductID")
     return resp
 

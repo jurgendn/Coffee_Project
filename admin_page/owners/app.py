@@ -23,7 +23,16 @@ def get_all_admin():
     close_db(engine, conn)
     return [Admin(ad[0], ad[1], ad[2], ad[3], ad[4], ad[5], ad[6], ad[7]) for ad in admin_list]
 
+
 def update_admin(ID, permission):
     engine, conn, Adm = connect_db()
-    Adm.update(whereclause=Adm.c.ID==ID).values(permission=permission).execute()
+    Adm.update(whereclause=Adm.c.ID == ID).values(
+        permission=permission).execute()
+    close_db(engine, conn)
+
+
+def add_admin(adm):
+    engine, conn, Adm = connect_db()
+    Adm.insert().values(name=adm[0], passwd=adm[1], avatar=adm[2], address=adm[3],
+                        phone=adm[4], email=adm[5], permission=adm[6]).execute()
     close_db(engine, conn)

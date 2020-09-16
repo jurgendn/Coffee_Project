@@ -24,6 +24,7 @@ class Filter(Form):
         'Accessory', 'Accessory'), ('Raw Material', 'Raw Material'), ('Others', 'Others'), ])
     lower_bound = IntegerField("From: ")
     upper_bound = IntegerField("To: ")
+    status = SelectField("Status: ", choices=[(0, "Available"), (1, "Lock")])
     filt = SubmitField("Filter")
 
 

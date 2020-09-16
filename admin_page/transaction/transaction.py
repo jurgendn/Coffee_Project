@@ -10,3 +10,9 @@ transaction = Blueprint('transaction', __name__,
 def transaction_list():
     t = tta.get_all_transaction()
     return render_template("transaction.html", transactions=t)
+
+
+@transaction.route("/<userID>")
+def user_transaction(userID):
+    t = tta.get_transaction_by_userID(int(userID))
+    return render_template("transaction.html", transactions=t)

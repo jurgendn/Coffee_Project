@@ -16,7 +16,7 @@
         <table class="table my-0" id="dataTable">
           <thead>
             <tr>
-              <th>Transaction ID</th>
+              <th>User Name</th>
               <th>User ID</th>
               <th>Products</th>
               <th>Amount</th>
@@ -28,7 +28,7 @@
             {% for transaction in transactions %}
             <tr>
               <td class="text-truncate text-break text-left d-lg-flex">
-                {{transaction.ID}}
+                <a href="{{transaction.user_ID}}">{{transaction.username}}</a>
               </td>
               <td>{{transaction.user_ID}}</td>
               <td>

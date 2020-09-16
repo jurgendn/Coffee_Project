@@ -78,6 +78,7 @@ class Kart(db.Model):
 class Complete(db.Model):
     __tablename__ = 'TRANSACTION'
     ID = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(1000))
     user_id = db.Column(db.String(1000))
     product_list = db.Column(db.String(100))
     total = db.Column(db.Integer)
@@ -199,7 +200,7 @@ def coffees():
         check.web_coffeesraw = check.web_coffeesraw + 1
         db.session.commit()
     if request.method == 'GET':
-        products = Products.query.filter(Products.lock==0)
+        products = Products.query.filter(Products.lock == 0)
         lst_products = []
         for product in products:
             if "RW" in product.ID:
@@ -221,7 +222,7 @@ rồi sau đó mới search, với input mà thuộc ID hoặc name of product t
 @app.route('/products/product_coffees/search')
 def search():
     if 1 > 0:
-        products = Products.query.filter(Products.lock==0)
+        products = Products.query.filter(Products.lock == 0)
         lst_products = []
         for product in products:
             if "RW" in product.ID:
@@ -372,8 +373,11 @@ def complete():
     if len(lst_sanpham) == 0:
         flash('Your cart do not have any products. Please add something to continue.')
         return redirect(url_for('cart'))
-    new_com = Complete(ID="{}_{}".format(current_user.get_id(), session['date']), user_id=current_user.get_id(
-    ), product_list=lst_sanpham, total=session['total'], date=session['date'], address=add, method=method)
+    usrID = current_user.get_id()
+    usrname = User.query.filter(User.id == usrID).first().name
+    print(usrname)
+    new_com = Complete(ID="", username=usrname, user_id=usrID,
+                       product_list=lst_sanpham, total=session['total'], date=session['date'], address=add, method=method)
     db.session.add(new_com)
     db.session.commit()
     for cartID in session['cartIDs']:
@@ -413,7 +417,7 @@ def raw_materials():
         check.web_machinery = check.web_machinery + 1
         db.session.commit()
     if request.method == 'GET':
-        products = Products.query.filter(Products.lock==0)
+        products = Products.query.filter(Products.lock == 0)
         lst_products = []
         for product in products:
             if "CM" in product.ID or "AS" in product.ID:
@@ -429,7 +433,7 @@ def raw_materials():
 @app.route('/products/raw_materials/search')
 def search1():
     if 1 > 0:
-        products = Products.query.filter(Products.lock==0)
+        products = Products.query.filter(Products.lock == 0)
         lst_products = []
         for product in products:
             if "CM" in product.ID or "AS" in product.ID:
@@ -666,12 +670,12 @@ def signup():
 def confirm():
     if request.method == 'POST':
         if request.form['yourcode'] == session['code_confirm']:
-            print("code nhap vao:", request.form['yourcode'])
+            rows = db.session.query(User).count()
             email = session['emailregister']
             name = session['nameregister']
             password = session['passwordregister']
             phone = session['phoneregister']
-            new_user = User(email=email, name=name, password=generate_password_hash(
+            new_user = User(id=rows+1, email=email, name=name, password=generate_password_hash(
                 password, method='sha256'), avatar=url_for('static', filename='img/bg.jpg'), phone=phone)
             db.session.add(new_user)
             db.session.commit()

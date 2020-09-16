@@ -14,11 +14,10 @@ content %}
               <form method="GET">
                 {{form.category.label(style="width:7%")}}
                 {{form.category(class="select_field", style="width:15%")}}
-                {{form.lower_bound.label(style="width: 5%")}}{{form.lower_bound(style="width:
-                13%")}}
+                {{form.lower_bound.label(style="width:
+                5%")}}{{form.lower_bound(style="width: 13%")}}
                 {{form.upper_bound.label}}{{form.upper_bound(style="width:
-                13%")}}
-                {{form.filt(style="width: 10%", class="btn")}}
+                13%")}}{{form.status.label}}{{form.status}} {{form.filt(style="width: 10%", class="btn")}}
               </form>
             </div>
           </div>
@@ -37,6 +36,7 @@ content %}
                   <th>Price</th>
                   <th>Amount</th>
                   <th>Brand</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -49,6 +49,11 @@ content %}
                   <td>{{prd.price}}</td>
                   <td>{{prd.amount}}</td>
                   <td>{{prd.brand}}</td>
+                  {% if prd.lock==1 %}
+                  <td>Lock</td>
+                  {% else %}
+                  <td>Available</td>
+                  {% endif %}
                   <td>
                     <div class="btn-group" role="group" style="height: 40px">
                       <a href="/products/edit?ProductID={{prd.ID}}"
@@ -56,18 +61,6 @@ content %}
                           Edit
                         </button></a
                       >
-                      <a href="/products/rm?ProductID={{prd.ID}}">
-                        <button
-                          class="btn btn-primary"
-                          type="button"
-                          style="
-                            margin-left: 6px;
-                            background-color: rgb(223, 78, 78);
-                          "
-                        >
-                          Delete
-                        </button>
-                      </a>
                     </div>
                   </td>
                 </tr>
