@@ -54,9 +54,11 @@ def get_login_info():
     adm = ad.get_admin_info(email)
     if ad.is_valid_admin(email, passwd):
         session['email'] = email
+        session['permission_type'] = adm.permission
         flash("Login Successfully!")
         resp = make_response(redirect("/"))
         resp.set_cookie('usrname', adm.name)
+        resp.set_cookie('permissionType', adm.permission)
         return resp
     else:
         return redirect("/admin/login")
@@ -66,7 +68,9 @@ def get_login_info():
 def log_out():
     email = session['email']
     ad.log_out(email)
-    return redirect("/")
+    resp = make_response(redirect("/"))
+    resp.set_cookie('permissionType', expires=0)
+    return resp
 
 
 # Profile

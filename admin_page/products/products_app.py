@@ -1,4 +1,4 @@
-from sqlalchemy import MetaData, Table, create_engine, func
+from sqlalchemy import MetaData, Table, create_engine
 
 from products.obj import Add_Product, Filter, Products
 

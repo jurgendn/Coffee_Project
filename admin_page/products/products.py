@@ -6,7 +6,6 @@ from flask import render_template, Blueprint, request, redirect, current_app, ma
 from products.products_app import Products, Add_Product, Filter
 import products.products_app as ppa
 import warehouse.warehouse_app as ww
-from flask_sqlalchemy import SQLAlchemy
 
 products = Blueprint('products', __name__,
                      static_folder="static", template_folder="templates")

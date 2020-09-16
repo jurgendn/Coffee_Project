@@ -10,6 +10,7 @@ from products.products import products
 from transaction.transaction import transaction
 from warehouse.warehouse import warehouse
 from dashboard.dashboard import dashboard
+from owners.owners import owners
 
 # ---------------------------------------------------------------
 # Config app
@@ -21,6 +22,7 @@ app.register_blueprint(admin_manage, url_prefix="/admin")
 app.register_blueprint(transaction, url_prefix="/transactions")
 app.register_blueprint(warehouse, url_prefix="/warehouse")
 app.register_blueprint(dashboard, url_prefix="/dashboard")
+app.register_blueprint(owners, url_prefix="/owners")
 
 app.secret_key = 'dungcohoikhongladamday'
 

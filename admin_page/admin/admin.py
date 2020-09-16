@@ -15,7 +15,7 @@ class LoginForm(Form):
 
 
 class Admin:
-    def __init__(self, ID, name, passwd, avatar, address, phone, email):
+    def __init__(self, ID, name, passwd, avatar, address, phone, email, permission):
         self.ID = ID
         self.name = name
         self.passwd = passwd
@@ -23,6 +23,7 @@ class Admin:
         self.phone = phone
         self.email = email
         self.avatar = 'static/img/avatars/' + avatar
+        self.permission = permission
 
 
 class AdminInfo(Form):
@@ -67,7 +68,7 @@ def get_admin_info(email):
         close_db(engine, conn)
         return "Invalid"
     close_db(engine, conn)
-    return Admin(info[0], info[1], info[2], info[3], info[4], info[5], info[6])
+    return Admin(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7])
 
 
 def is_valid_admin(email, passwd):
@@ -77,6 +78,8 @@ def is_valid_admin(email, passwd):
 
 def log_out(email):
     session.pop('email')
+    session.pop('permission_type')
+    return True
 
 
 def change_profile_image(email):
@@ -92,9 +95,10 @@ def change_profile_image(email):
 
 def update_info(name, email, phone, address):
     engine, conn, Adm = connect_db()
-    Adm.update(whereclause=Adm.c.email==email).values(
+    Adm.update(whereclause=Adm.c.email == email).values(
         name=name, email=email, phone=phone, address=address).execute()
     close_db(engine, conn)
+
 
 def update_passwd(email, old_pass, new_pass, confirm_pass):
     admin = get_admin_info(session['email'])
@@ -105,6 +109,7 @@ def update_passwd(email, old_pass, new_pass, confirm_pass):
     if new_pass != confirm_pass:
         return False
     engine, conn, Adm = connect_db()
-    Adm.update(whereclause=Adm.c.email==email).values(passwd=generate_password_hash(new_pass, method='sha256')).execute()
-    close_db(engine, conn) 
+    Adm.update(whereclause=Adm.c.email == email).values(
+        passwd=generate_password_hash(new_pass, method='sha256')).execute()
+    close_db(engine, conn)
     return True

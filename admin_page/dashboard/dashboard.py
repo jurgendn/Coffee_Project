@@ -8,5 +8,6 @@ dashboard = Blueprint('dashboard', __name__,
 
 @dashboard.route("/")
 def dashboard_page():
-    revenue = dda.get_total_revenue()
-    return render_template("dashboard.html", rev=revenue)
+    revenue = dda.get_total_revenue('TRANSACTION')
+    vstor = dda.get_total_visit("COUNT_VISIT")
+    return render_template("dashboard.html", rev=revenue, vstor=vstor)
