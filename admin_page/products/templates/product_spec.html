@@ -77,6 +77,16 @@ content %}
                       value=prd.amount)}}
                     </div>
                     <div class="col-md-12 col-lg-8">
+                      {{form.lock.label(class="col-form-label",
+                      style="font-family: Lato, sans-serif;font-weight:
+                      normal;opacity: 0.75;font-size: 18px; margin: 20px 0px; padding-right:15px;")}}
+                      {% if prd.lock == 1 %}
+                      {{form.lock(checked=True)}}
+                      {% else %}
+                      {{form.lock(checked=False)}}
+                      {% endif %}
+                    </div>
+                    <div class="col-md-12 col-lg-8">
                       {{form.img(class="col-form-label",
                       style="font-family: Lato, sans-serif;font-weight:
                       normal;opacity: 0.75;font-size: 18px;")}}

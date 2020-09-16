@@ -63,6 +63,7 @@ class Products(db.Model):
     category = db.Column(db.String(100))
     amount = db.Column(db.Integer)
     brand = db.Column(db.String(100))
+    lock = db.Column(db.Integer)
 
 
 class Kart(db.Model):
@@ -198,7 +199,7 @@ def coffees():
         check.web_coffeesraw = check.web_coffeesraw + 1
         db.session.commit()
     if request.method == 'GET':
-        products = Products.query.all()
+        products = Products.query.filter(Products.lock==0)
         lst_products = []
         for product in products:
             if "RW" in product.ID:
@@ -220,7 +221,7 @@ rồi sau đó mới search, với input mà thuộc ID hoặc name of product t
 @app.route('/products/product_coffees/search')
 def search():
     if 1 > 0:
-        products = Products.query.all()
+        products = Products.query.filter(Products.lock==0)
         lst_products = []
         for product in products:
             if "RW" in product.ID:
@@ -412,7 +413,7 @@ def raw_materials():
         check.web_machinery = check.web_machinery + 1
         db.session.commit()
     if request.method == 'GET':
-        products = Products.query.all()
+        products = Products.query.filter(Products.lock==0)
         lst_products = []
         for product in products:
             if "CM" in product.ID or "AS" in product.ID:
@@ -428,7 +429,7 @@ def raw_materials():
 @app.route('/products/raw_materials/search')
 def search1():
     if 1 > 0:
-        products = Products.query.all()
+        products = Products.query.filter(Products.lock==0)
         lst_products = []
         for product in products:
             if "CM" in product.ID or "AS" in product.ID:

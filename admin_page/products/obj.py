@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, IntegerField, SelectField, SubmitField, validators, FileField, Field
+from wtforms import Form, StringField, IntegerField, SelectField, SubmitField, validators, FileField, BooleanField
 from wtforms.fields.html5 import IntegerRangeField, IntegerField
 import products.products_app as ppa
 
@@ -14,6 +14,7 @@ class Add_Product(Form):
     brand = StringField("Brand: ")
     description = StringField("Description: ")
     img = FileField("Add Photo")
+    lock = BooleanField("Lock")
     save = SubmitField("Save")
 
 
@@ -29,7 +30,7 @@ class Filter(Form):
 # Products
 class Products:
 
-    def __init__(self, ID, name, category, price, amount, brand, description, prd_img):
+    def __init__(self, ID, name, category, price, amount, brand, description, prd_img, lock):
         self.ID = ID
         self.name = name
         self.category = category
@@ -38,3 +39,4 @@ class Products:
         self.brand = brand
         self.description = description
         self.linkimg = prd_img
+        self.lock = lock

@@ -31,11 +31,12 @@ def edit_products():
     prd_id = request.args.get("ProductID")
     prd = ppa.get_prd_by_id(prd_id)[0]
     prd_obj = Products(prd[0], prd[1], prd[2], int(
-        prd[3]), int(prd[4]), prd[5], prd[6], prd[7])
+        prd[3]), int(prd[4]), prd[5], prd[6], prd[7], prd[8])
     resp = make_response(render_template(
         'product_spec.html', title="Edit Product", action="edit_prd", prd=prd_obj, form=form))
     resp.set_cookie("ProductID", prd_id, path='/',
                     expires=datetime.now() + timedelta(minutes=70))
+    session['checked_box'] = prd.lock
     return resp
 
 
@@ -77,12 +78,14 @@ def get_new_prd():
 def edit_prd():
     form = Add_Product(request.form)
     ID = request.cookies.get("ProductID")
-    print(ID)
-    old_amount = ppa.get_prd_by_id(ID)[0][4]
+    old_prd = ppa.get_prd_by_id(ID)[0]
+    old_amount = old_prd[4]
     name = form.name.data
     category = form.category.data
     price = form.price.data
     amount = form.amount.data
+    lock = 1 if form.lock.data == True else 0
+    print(lock)
     if amount > old_amount:
         ww.add_activity(ID, amount - old_amount)
     brand = form.brand.data
@@ -96,7 +99,7 @@ def edit_prd():
     # f.write(image.read())
     # f.close()
     new_product = Products(ID, name, category, price,
-                           amount, brand, description, path)
+                           amount, brand, description, path, lock)
     ppa.update_product(prd=new_product)
     resp = make_response(redirect(
         "/products/?category=All&lower_bound=&upper_bound=&brand=&filt=Filter"))
